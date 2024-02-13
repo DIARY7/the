@@ -116,7 +116,7 @@ INSERT INTO exams3_categorie_depense VALUES(null,"Carburant");
 INSERT INTO exams3_categorie_depense VALUES(null,"engrais");
 INSERT INTO exams3_categorie_depense VALUES(null,"logistique");
 
-INSERT INTO exams3_salaire VALUES (null,25000);
+INSERT INTO exams3_salaire VALUES (25000);
 
 
 create table exams3_regenerer(
@@ -126,8 +126,6 @@ insert into exams3_regenerer values(1);
 insert into exams3_regenerer values(8);
 insert into exams3_regenerer values(5);
 
-
-alter table regenerer add constraint c_regenerer check mois<=12 and mois>=1;
 
 create table exams3_config_cueilleur(
     minimal decimal(10,2),

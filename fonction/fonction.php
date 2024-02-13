@@ -254,6 +254,7 @@
     {
         $connection = mysqlConnect();
         $sql = "update exams3_parcelle set surface =".$data["surface"]." , idVariete =".$data["idVariete"]." where idParcelle =".$id;
+        echo($sql);
         $connection->exec($sql);
     }
 
@@ -265,5 +266,19 @@
         echo($sql);
         $connection->exec($sql);
     }
-        
+
+    function updateConfig($data)
+    {
+        $connection = mysqlConnect();
+        $sql = "update exams3_config_cueilleur set minimal =".$data["minimal"]." , bonus =".$data["bonus"].", mallus = ".$data["mallus"];
+        $connection->exec($sql);
+    }
+
+    function updatePrix($data)
+    {
+        $connection = mysqlConnect();
+        $sql = "update exams3_prix_vente set prix =".$data["prix"]." where idVariete = ".$data["idVariete"];
+        $connection->exec($sql);
+    }
+
 ?>

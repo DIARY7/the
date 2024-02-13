@@ -46,7 +46,7 @@
                     <div class="bg-light rounded p-4 p-sm-5 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="row g-3">
                             <form class="forms-sample" method="post" action="#" id="formParcelle">
-                                <input type="hidden" name="idParcelle" class="form-control" id="idParcelle">
+                                <input type="hidden" name="idParcelle" class="form-control" id="idParcelle" value="null">
                                 <div class="col-sm-12">
                                     <div class="form-floating mb-3">
                                         <input type="number" name="surface" class="form-control" id="surface"

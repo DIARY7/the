@@ -1,3 +1,7 @@
+<?php 
+    include "../../fonction/fonction.php";
+    $admin = getLoginDafautAdmin();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,6 +34,7 @@
 
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
+    <script src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 </head>
 
 <body>
@@ -48,16 +53,16 @@
                 <div class="col-lg-7">
                     <div class="bg-light rounded p-4 p-sm-5 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="row g-3">
-                            <form class="forms-sample" method="post" action="../../admin/variationThe.php">
+                            <form class="forms-sample" method="post" action="../../page-traitement/traitement-login-admin.php">
                                 <div class="col-sm-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control border-0" id="name" placeholder="Gurdian Name">
+                                        <input type="text" class="form-control border-0" id="name" placeholder="Gurdian Name" name="login" value="<?php echo $admin["nomUser"]; ?>" >
                                         <label for="name">Nom : </label>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control border-0" id="pass" placeholder="Gurdian Email">
+                                        <input type="password" class="form-control border-0" id="pass" placeholder="Gurdian Email" name="mdp" value="<?php echo $admin["mdp"]; ?>" >
                                         <label for="pass">Pass : </label>
                                     </div>
                                 </div>
@@ -65,6 +70,18 @@
                                     <button class="btn btn-primary py-3 px-4" type="submit">Submit Now</button>
                                 </div>
                             </form>
+                            <?php if (isset($_GET["erreur"])) { ?>
+                                <script>
+                                    Swal.fire({
+                                        icon:"error",
+                                        title: 'Erreur',
+                                        text: 'Identification incorrecte',
+                                        icon: 'error',
+                                        confirmButtonText: 'Ressayer'
+                                    
+                                    })
+                                </script>
+                        <?php } ?>
                         </div>
                     </div>
                 </div>

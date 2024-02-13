@@ -38,8 +38,8 @@ function insert()
         const element = contenues[index];
         element.value = null;
     }
-    let idVariete = document.getElementById("idParcelle");
-    idVariete.value = "null";
+    let idParcelle = document.getElementById("idParcelle");
+    idParcelle.value = "null";
     if (document.getElementById("newId") != null) {
         document.getElementById("newId").remove();
     }
@@ -101,4 +101,32 @@ function change()
             occupation.value = retour[0].idVariete;
         }
     )
+}
+
+function afficheTableau()
+{
+    sendXHRRequest("page_mouvement_admin/insert-parcelle.php?type=tableau","GET",dataForm,null).then(
+        (response)=>{
+            let retour = JSON.parse(response);
+            let listId = document.createElement("select");
+            listId.id = "newId";
+            listId.classList.add("form-select");
+            // listId.aria_label = "Floating label select example";
+            var option = document.createElement("option");
+            option.disabled = true;
+            listId.appendChild(option);
+            for( i=0 ; i < retour.length ; i++)
+            {
+                var option = document.createElement("option");
+                option.value = retour[i].idCueilleur;
+                option.innerHTML = retour[i].nomCueilleur;
+                listId.appendChild(option);
+            }
+            form.appendChild(listId);
+            listId.addEventListener("change",change);
+            let bouton = document.getElementById("modifier");
+            bouton.remove();
+        }
+    )
+
 }

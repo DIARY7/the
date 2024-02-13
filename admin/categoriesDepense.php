@@ -45,16 +45,13 @@
                 <div class="col-lg-7">
                     <div class="bg-light rounded p-4 p-sm-5 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="row g-3">
-                            <form class="forms-sample" method="post" action="#">
+                            <form class="forms-sample" method="post" action="#" id="formCategorie">
+                                <input type="hidden" id="idCategorie" name="idCategorie"/>
                                 <div class="col-sm-12">
                                     <div class="form-floating mt-3 mb-3">
-                                        <select class="form-select" id="floatingSelect" name="depense"
-                                            aria-label="Floating label select example">
-                                            <option value=" depense 1">depense 1</option>
-                                            <option value=" depense 2">depense 2</option>
-                                            <option value=" depense 3">depense 3</option>
-                                        </select>
-                                        <label for="floatingSelect">Depense : </label>
+                                    <input type="text" name="nomCategorie" class="form-control" id="nomCategorie"
+                                            placeholder="categorie Depense">
+                                        <label for="nomCategorie"> Categorie Depense : </label>
                                     </div>
                                 </div>
                                 <div class="col-12 text-center">
@@ -70,5 +67,6 @@
     <!-- Quote End -->
     <?php include 'footerAdmin.html' ?>
     </body>
-
+    <script src="../asset/js/xhr.js"></script>
+    <script src="../asset/js/categorie.js"></script>
 </html>

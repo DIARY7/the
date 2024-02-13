@@ -17,6 +17,11 @@
         $result = getQuery($sql);
         echo json_encode($result);
     }
+    else if (isset($_GET['type']) && strpos($_GET['type'],'tableau') !== false) {
+        $sql = "select * from exams3_parcelle";
+        $result = getQuery($sql);
+        echo json_encode($result);
+    }
     else{
         $data = array();
         $data["idParcelle"] = $_POST["idParcelle"];

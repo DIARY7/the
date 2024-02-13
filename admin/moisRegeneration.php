@@ -40,66 +40,62 @@
         <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                 <h1 class="display-5 mb-5">Regeneration en mois</h1>
         </div>
-    <form class="forms-sample" method="post" id="formVariete">
+    <form class="forms-sample" method="post" id="formGenerer">
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-            value="option1">
-        <label class="form-check-label" for="inlineRadio1">Janvier</label>
+        <input class="form-check-input" type="checkbox" id="1" value="1" name="mois">
+        <label class="form-check-label" >Janvier</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-            value="option2">
-        <label class="form-check-label" for="inlineRadio2">Fevrier</label>
+        <input class="form-check-input" type="checkbox" id="2" value="2" name="mois">
+           
+        <label class="form-check-label" >Fevrier</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-            value="option2">
-        <label class="form-check-label" for="inlineRadio2">Mars</label>
+        <input class="form-check-input" type="checkbox" id="3" value="3" name="mois">
+           
+        <label class="form-check-label" >Mars</label>
+    </div>
+    <div class="form-check form-check-inline"> 
+        <input class="form-check-input" type="checkbox" id="4" value="4" name="mois">
+        <label class="form-check-label" >Avril</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-            value="option1">
-        <label class="form-check-label" for="inlineRadio1">Avril</label>
+        <input class="form-check-input" type="checkbox" id="5" value="5" name="mois">
+           
+        <label class="form-check-label" >Mai</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-            value="option2">
-        <label class="form-check-label" for="inlineRadio2">Mai</label>
+        <input class="form-check-input" type="checkbox" id="6" value="6" name="mois">
+           
+        <label class="form-check-label" >Juin</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-            value="option2">
-        <label class="form-check-label" for="inlineRadio2">Juin</label>
+        <input class="form-check-input" type="checkbox" id="7" value="7" name="mois">
+        <label class="form-check-label" >Juillet</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-            value="option1">
-        <label class="form-check-label" for="inlineRadio1">Juillet</label>
+        <input class="form-check-input" type="checkbox" id="8" value="8" name="mois">
+           
+        <label class="form-check-label" >Aout</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-            value="option2">
-        <label class="form-check-label" for="inlineRadio2">Aout</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-            value="option2">
-        <label class="form-check-label" for="inlineRadio2">Semptembre</label>
+        <input class="form-check-input" type="checkbox" id="9" value="9" name="mois">
+           
+        <label class="form-check-label" >Semptembre</label>
     </div>  
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-            value="option1">
-        <label class="form-check-label" for="inlineRadio1">Octobre</label>
+        <input class="form-check-input" type="checkbox" id="10" value="10" name="mois">
+        <label class="form-check-label" >Octobre</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-            value="option2">
-        <label class="form-check-label" for="inlineRadio2">Novembre</label>
+        <input class="form-check-input" type="checkbox" id="11" value="11" name="mois">
+           
+        <label class="form-check-label" >Novembre</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-            value="option2">
-        <label class="form-check-label" for="inlineRadio2">Decembre</label>
+        <input class="form-check-input" type="checkbox" id="12" value="12" name="mois">
+           
+        <label class="form-check-label" >Decembre</label>
     </div> 
     <div class="col-12 text-center">
         <button class="btn btn-primary py-3 px-4" type="submit" id="btnVariete">Sauvegarder</button>
@@ -108,7 +104,8 @@
 </div>
 </div>
 <?php include 'footerAdmin.html' ?>
-
+<script src="../asset/js/xhr.js"></script>
+<script src="../asset/js/generer.js"></script>
 </body>
 
 </html>
