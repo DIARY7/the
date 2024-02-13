@@ -48,26 +48,21 @@
                     <div class="bg-light rounded p-4 p-sm-5 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="row g-3">
                             <form class="forms-sample" method="post" id="formVariete">
-                                <input type="hidden" id="idVariete" name="idVariete" value="null"/>
                                 <div class="col-sm-12">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" name="nomVariete" id="nomVariete"
-                                            placeholder="name" >
-                                        <label for="nomVariete"> Nom : </label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <div class="form-floating mb-3">
-                                        <input type="decimal" class="form-control" name="occupation" id="occupation"
-                                            placeholder="1">
-                                        <label for="occupation"> Occupation : </label>
+                                    <div class="form-floating mt-3 mb-3">
+                                        <select class="form-select" id="floatingSelect" name="idCategorie"
+                                            aria-label="Floating label select example">
+                                            <option value="nom 1">nom 1</option>
+                                            <option value="nom 2">nom 2</option>
+                                        </select>
+                                        <label for="floatingSelect">Choix categorie depense : </label>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-floating mb-3">
                                         <input type="decimal" class="form-control" name="rendement" id="rendement"
                                             placeholder="1">
-                                        <label for="rendement"> Rendement : </label>
+                                        <label for="rendement"> Prix vente : </label>
                                     </div>
                                 </div>
                                 <div class="col-12 text-center">
@@ -75,10 +70,6 @@
                                 </div>
                             </form>
                             <input class="btn btn-primary py-3 px-4" type="button" value="Modifier" id="modifier">
-                            <!-- <form id="form">
-                                <input type="text" id="test" name="test"/>
-                                <input type="submit" value="ok"/>
-                            </form> -->
                         </div>
                     </div>
                 </div>
@@ -87,9 +78,6 @@
     </div>
     <!-- Quote End -->
     <?php include 'footerAdmin.html' ?>
-
-    <script src="../asset/js/xhr.js"></script>
-    <script src="../asset/js/variete.js"></script>
     </body>
 
 </html>

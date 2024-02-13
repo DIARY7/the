@@ -80,11 +80,26 @@
         }
         return 0;
     }
+    function getKilosCueilliBetween($idParcelle,$dateMin,$dateMax){
+        $get2 = "SELECT idParcelle,sum(poids) as total_poids from  exams3_cueillette where idParcelle = ".$idParcelle." and DATE_FORMAT(dateCueillette, '%Y-%m') =  DATE_FORMAT('".$date."', '%Y-%m') group by idParcelle,DATE_FORMAT(dateCueillette, '%Y-%m')";
+        
+        $tab2 = getQuery($get2);
+        if (count($tab2) != 0) {
+            $sommePoids=0;
+            for ($i=0; $i <count($tab2) ; $i++) { 
+                $sommePoids+=$tab2[$i]["total_poids"];
+            }
+            return $sommePoids;
+        }
+        return 0;
+    }
     //Insertion
     function checkReste($idparcelle,$poids,$date){
 
         $totalRendement = getRendementTotal($idparcelle);        
-        $cueilli = getKilosCueilli($idparcelle,$date); 
+        //$cueilli = getKilosCueilli($idparcelle,$date); //Ito le avant 
+        $cueilli = getTotalCueilli($idparcelle,$date);
+        echo "ceuilli : ".$cueilli;
         $reste = $totalRendement - $cueilli;
         if ($reste < $poids ) {
             return $reste; 
@@ -93,6 +108,28 @@
             return -1; //Raha OK
         }
          
+    }
+    // Le misy resaka mois
+    function getTotalCueilli($idParcelle,$dateMax){
+        $dateSpliter = explode("-",$dateMax);
+        $mois = $dateSpliter[1];
+        $sql = "SELECT mois as lastFull from exams3_regenerer where mois<= ". $mois ." order by mois DESC limit 1;";
+        $lastMountFull = getQuery($sql)[0]["lastFull"];
+        $dateSpliter[2] = 1;
+        $dateSpliter[1] = $lastMountFull;
+        
+        $dateMin = implode("-",$dateSpliter);
+        
+        $get = "SELECT idParcelle,sum(poids) as total_poids from  exams3_cueillette where idParcelle = ". $idParcelle." and DATE_FORMAT(dateCueillette, '%Y-%m') >=  DATE_FORMAT('".$dateMin."', '%Y-%m') and  DATE_FORMAT(dateCueillette, '%Y-%m') <=  DATE_FORMAT('".$dateMax."', '%Y-%m') group by idParcelle,DATE_FORMAT(dateCueillette, '%Y-%m')";
+        $tab2 = getQuery($get);
+        if (count($tab2) != 0) {
+            $sommePoids=0;
+            for ($i=0; $i <count($tab2) ; $i++) { 
+                $sommePoids+=$tab2[$i]["total_poids"];
+            }
+            return $sommePoids;
+        }
+        return 0;
     }
     //Read 
     function getAllCueilleur(){
@@ -135,10 +172,14 @@
         $reste = $totalRendement - $totalCueilli;
         return $reste;    
     }
-        
+    
+    function depenseBetween($dateMin,$dateMax){
+        $sql = "Select sum(montant) as sommeMontant from exams3_depense where dateDepense >= '".$dateMin."' and dateDepense<='".$dateMax."'  ";
+        return getQuery($sql)[0]["sommeMontant"];
+    }
     
     function getStat($dateMin,$dateMax){ 
-        $sql1 ="Select sum(poids) as sommeTotal from exams3_cueillette where dateCueillette >= '".$dateMin."' and dateCueillette<='".$dateMax."' limit 1";
+        $sql1 ="Select sum(poids) as sommeTotal from exams3_cueillette where dateCueillette >= '".$dateMin."' and dateCueillette<='".$dateMax."' ";
         
         $sql3 = "Select sum(montant) as sommeMontant from exams3_depense limit1 ";
         
@@ -149,10 +190,59 @@
         $stat["reste"] = getResteGlobal($dateMin,$dateMax) ;
         $coutRevient1 = getQuery($sql1)[0]["sommeTotal"] * getQuery($sql4)[0]["prix"];
         $stat["cout_revient"] = ($coutRevient1 + getQuery($sql3)[0]["sommeMontant"])/getQuery($sql1)[0]["sommeTotal"];
+        $stat["montant_vente"] = calcTotalVente($dateMin,$dateMax);
+        $stat["benefice"] = $stat["montant_vente"] - ($coutRevient1 + depenseBetween($dateMin,$dateMax));
+        $stat["montant_depense"] = depenseBetween($dateMin,$dateMax);
         return $stat;
     }
+
+    //client partie2
+    function calcTotalVente($dateMin,$dateMax){ // Supposons que le prix dans prix_vente est par kilo
+        $sql = "SELECT SUM(poids*prix) as totalVente FROM exams3_v_prix WHERE  dateCueillette >= '".$dateMin."' and dateCueillette<='".$dateMax."' limit 1 ";
+        return getQuery($sql)[0]["totalVente"];
+    }
     
-    //admin
+
+    function getListePaiement(){
+        $sql = "SELECT  dateCueillette,idCueilleur,nomCueilleur, SUM(poids) as total_poids FROM exams3_v_cueillette group by dateCueillette,idCueilleur,nomCueilleur";
+        $sqlSal = "SELECT prix FROM exams3_salaire";
+        $sqlConfig = "SELECT * from exams3_config_cueilleur";
+        $conf = getQuery($sqlConfig)[0];
+        $salaire = getQuery($sqlSal)[0]["prix"];
+        $tab = getQuery($sql);
+        $result = array();
+        for ($i=0; $i <count($tab) ; $i++) {
+            $result[$i] = array(); 
+            $result[$i]["date"] = $tab[$i]["dateCueillette"];
+            $result[$i]["nom_cueilleur"] = $tab[$i]["nomCueilleur"];
+            $result[$i]["poids"] = $tab[$i]["total_poids"];
+            
+            if ($result[$i]["poids"] <$conf["minimal"] ) {
+                $montantNormal = ($conf["minimal"])*$salaire;
+                $reste = $conf["minimal"] - $result[$i]["poids"];
+                $result[$i]["malus"] = $conf["mallus"]*$reste;
+                $result[$i]["bonus"] = 0; 
+                $result[$i]["montant_paiement"] = $montantNormal - $result[$i]["malus"];
+            }
+            else if ($result[$i]["poids"] > $conf["minimal"]) {
+                $montantNormal = ($conf["minimal"])*$salaire;
+                $reste =  $result[$i]["poids"] - $conf["minimal"];
+                $result[$i]["bonus"] = $conf["bonus"]*$reste;
+                $result[$i]["malus"] = 0; 
+                $result[$i]["montant_paiement"] = $montantNormal + $result[$i]["bonus"];
+            }
+            else if ($result[$i]["poids"] == $conf["minimal"]) {
+                $result[$i]["bonus"] = 0;
+                $result[$i]["malus"] = 0;
+                $result[$i]["montant_paiement"] = $montantNormal;
+            }
+
+        }   
+        return $result;     
+    }
+
+    
+    //admin partie1
     function updateVariete($data,$id)
     {
         $connection = mysqlConnect();
@@ -175,5 +265,5 @@
         echo($sql);
         $connection->exec($sql);
     }
-
+        
 ?>

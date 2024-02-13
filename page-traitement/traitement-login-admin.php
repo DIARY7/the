@@ -6,12 +6,12 @@
     echo $_POST["login"]; echo $_POST["mdp"];
     var_dump($user);
     if ( count($user) ==0 ) {
-        header("location: ../asset/page/logAdmin.php?erreur=1");
+        header("location: ../index.php");
         
     }
     else {
         session_start();
         $_SESSION["id"] = $user[0]["id"];
-        header("location: ../admin/variationThe.php");
+        //header("location: ../afficher-salaire.php");
     }
 ?>

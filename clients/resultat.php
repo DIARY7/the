@@ -60,53 +60,41 @@
                     </div>
                 </div>
             </div>
-       </div>      
-        <div class="row g-4">
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="service-item rounded d-flex h-100">
-                    <div class="service-img rounded">
-                        <img class="img-fluid" src="../img/service-1.jpg" alt="">
-                    </div>
-                    <div class="service-text rounded p-5">
-                        <div class="btn-square rounded-circle mx-auto mb-3">
-                            <img class="img-fluid" src="../img/icon/icon-3.png" alt="Icon">
-                        </div>
-                        <h4 class="mb-3">Poids total cueillette :</h4>
-                        <p class="mb-4" id="totalCueillette" >0</p>
-                    </div>
+       </div>
+       <div class="container-fluid facts my-5 py-5" data-parallax="scroll" data-image-src="img/carousel-1.jpg">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-sm-6 text-center wow fadeIn" data-wow-delay="0.1s">
+                    <h1 class="display-4 text-white" data-toggle="counter-up" id="totalCueillette">0987u984909u80</h1>
+                    <span class="fs-5 fw-semi-bold text-light">Poids total cueillette</span>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="service-item rounded d-flex h-100">
-                    <div class="service-img rounded">
-                        <img class="img-fluid" src="../img/service-2.jpg" alt="">
-                    </div>
-                    <div class="service-text rounded p-5">
-                        <div class="btn-square rounded-circle mx-auto mb-3">
-                            <img class="img-fluid" src="../img/icon/icon-6.png" alt="Icon">
-                        </div>
-                        <h4 class="mb-3">Pois restant</h4>
-                        <p class="mb-4" id="reste" >0</p>
-                    </div>
+                <div class="col-sm-6 text-center wow fadeIn" data-wow-delay="0.3s">
+                    <h1 class="display-4 text-white" data-toggle="counter-up" id="reste" >0987u984909u80</h1>
+                    <span class="fs-5 fw-semi-bold text-light">Pois restant sur les parcelles</span>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="service-item rounded d-flex h-100">
-                    <div class="service-img rounded">
-                        <img class="img-fluid" src="../img/service-3.jpg" alt="">
-                    </div>
-                    <div class="service-text rounded p-5">
-                        <div class="btn-square rounded-circle mx-auto mb-3">
-                            <img class="img-fluid" src="../img/icon/icon-5.png" alt="Icon">
-                        </div>
-                        <h4 class="mb-3">Cout de revient /kg</h4>
-                        <p class="mb-4" id="cout_revient" >0</p>
-                    </div>
+                <div class="col-sm-6 text-center wow fadeIn" data-wow-delay="0.5s">
+                    <h1 class="display-4 text-white" data-toggle="counter-up" id="cout_revient" >0987u984909u80</h1>
+                    <span class="fs-5 fw-semi-bold text-light">Cout de revient /kg</span>
                 </div>
+                
+    
+                <div class="col-sm-6 text-center wow fadeIn" data-wow-delay="0.3s">
+                    <h1 class="display-4 text-white" data-toggle="counter-up" id="montant_vente" >0987u984909u80</h1>
+                    <span class="fs-5 fw-semi-bold text-light"  >Montant des ventes</span>
+                </div>
+                <div class="col-sm-6 text-center wow fadeIn" data-wow-delay="0.5s">
+                    <h1 class="display-4 text-white" data-toggle="counter-up" id="montant_depense" >0987u984909u80</h1>
+                    <span class="fs-5 fw-semi-bold text-light"  >Montant des dépenses</span>
+                </div>
+                <div class="col-sm-6 text-center wow fadeIn" data-wow-delay="0.7s">
+                    <h1 class="display-4 text-white" data-toggle="counter-up" id="benefice" >0987u984909u80</h1>
+                    <span class="fs-5 fw-semi-bold text-light">Bénéfice</span>
+                </div>
+                
             </div>
         </div>
-    </div>
-</div>
+        </div>
+        </div>
 <?php include 'footerClient.html' ?>
 <script src="../asset/js-Ajax/xhr.js"></script>
 <script src="../asset/js-Ajax/ajax-stat.js"></script>

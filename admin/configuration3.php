@@ -30,66 +30,54 @@
 
     <!-- Template Stylesheet -->
     <link href="../asset/css/style.css" rel="stylesheet">
-
-    
 </head>
 
 <body>
 <?php include 'navAdmin.html' ?>
 
-<!-- Quote Start -->
-<div class="container-fluid py-5">
-        <div class="container">
-        <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <h1 class="display-5 mb-5">Variete</h1>
-        </div>
-            <div class="row justify-content-center">
+<div class="container-xxl py-5">
+    <div class="container">
+    <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <h1 class="display-5 mb-5">Configuration 3</h1>
+        </div>   
+        <div class="row justify-content-center">
                 <div class="col-lg-7">
                     <div class="bg-light rounded p-4 p-sm-5 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="row g-3">
-                            <form class="forms-sample" method="post" id="formVariete">
-                                <input type="hidden" id="idVariete" name="idVariete" value="null"/>
+                            <form class="forms-sample" method="post"  id="formDepense">
                                 <div class="col-sm-12">
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" name="nomVariete" id="nomVariete"
-                                            placeholder="name" >
-                                        <label for="nomVariete"> Nom : </label>
+                                        <input type="number" name="montant" class="form-control" id="floatingInput"
+                                            placeholder="4000">
+                                        <label for="floatingInput"> Poids minimal journalier : </label>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-floating mb-3">
-                                        <input type="decimal" class="form-control" name="occupation" id="occupation"
-                                            placeholder="1">
-                                        <label for="occupation"> Occupation : </label>
+                                        <input type="number" name="montant" class="form-control" id="floatingInput"
+                                            placeholder="4000">
+                                        <label for="floatingInput"> % de bonus : </label>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-floating mb-3">
-                                        <input type="decimal" class="form-control" name="rendement" id="rendement"
-                                            placeholder="1">
-                                        <label for="rendement"> Rendement : </label>
+                                        <input type="number" name="montant" class="form-control" id="floatingInput"
+                                            placeholder="4000">
+                                        <label for="floatingInput"> % de mallus : </label>
                                     </div>
                                 </div>
                                 <div class="col-12 text-center">
-                                    <button class="btn btn-primary py-3 px-4" type="submit" id="btnVariete">Insert</button>
+                                    <button class="btn btn-primary py-3 px-4" type="submit">Submit Now</button>
                                 </div>
                             </form>
-                            <input class="btn btn-primary py-3 px-4" type="button" value="Modifier" id="modifier">
-                            <!-- <form id="form">
-                                <input type="text" id="test" name="test"/>
-                                <input type="submit" value="ok"/>
-                            </form> -->
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>  
         </div>
     </div>
-    <!-- Quote End -->
-    <?php include 'footerAdmin.html' ?>
+</div>
+<?php include 'footerAdmin.html' ?>
 
-    <script src="../asset/js/xhr.js"></script>
-    <script src="../asset/js/variete.js"></script>
-    </body>
+</body>
 
 </html>

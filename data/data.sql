@@ -116,9 +116,40 @@ INSERT INTO exams3_categorie_depense VALUES(null,"Carburant");
 INSERT INTO exams3_categorie_depense VALUES(null,"engrais");
 INSERT INTO exams3_categorie_depense VALUES(null,"logistique");
 
-INSERT INTO exams3_salaire VALUES (25000);
+INSERT INTO exams3_salaire VALUES (null,25000);
 
 
+create table exams3_regenerer(
+    mois int primary key
+)ENGINE=InnoDB;
+insert into exams3_regenerer values(1);
+insert into exams3_regenerer values(8);
+insert into exams3_regenerer values(5);
 
+
+alter table regenerer add constraint c_regenerer check mois<=12 and mois>=1;
+
+create table exams3_config_cueilleur(
+    minimal decimal(10,2),
+    bonus decimal(5,2),
+    mallus decimal(5,2)
+)ENGINE=InnoDB;
+insert into exams3_config_cueilleur values(100,2,4);
+
+create table exams3_prix_vente(
+    idVariete int primary key,
+    prix decimal(10,2),
+    foreign key (idVariete) references exams3_variete(idVariete)
+)ENGINE=InnoDB;
+insert into exams3_prix_vente values(1,1000);
+insert into exams3_prix_vente values(2,10000);
+insert into exams3_prix_vente values(3,2000);
+
+create or replace view exams3_v_prix as
+select
+cueillette.*,
+prix.prix
+from exams3_v_cueillette cueillette
+join exams3_prix_vente prix on cueillette.idVariete = prix.idVariete;
 
 
