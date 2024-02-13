@@ -1,0 +1,27 @@
+-login par defaut : logClient
+(exect)
+-Page 1: exect
+    - date , chgoix parcelle , poids cueili 
+    -validation ajax , si le pois est superieur au kg de feuille 
+
+- page 2: depense 
+    -date , choix categorie depense , montant
+
+- page 3: resultat
+    -Poids total cueillette
+    -Pois restant
+    -Cout de revient /kg
+
+*** admin (controle)
+- login : logAdmin
+-page (gestion variete de the ) : Variation_the
+    -nom , occupation (1 pied 1,8m 2) , rendement par pied
+-page(gestion de parcelle ): parcelle
+    -numero parcelle , surface en hect , variete de the 
+-page (gestion de cueilleurs): cueilleurs
+    - nom , genre , date naissance
+-page gestion des categories de depenses : categoriesDepense
+    - engrais ,logistique
+-page (configuration montant salaire par kg des cueillette)
+
+
